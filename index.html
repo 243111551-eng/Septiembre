@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Vida UPMH - Tu Asistente Universitario</title>
+    <title>Mi Vida UPMH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -16,36 +16,10 @@
             --success-color: #00b894;
             --warning-color: #fdcb6e;
             --danger-color: #e17055;
-            --card-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.1);
             --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             --radius: 16px;
             --transition: all 0.3s ease;
-        }
-
-        .theme-ocean {
-            --primary-color: #0984e3;
-            --secondary-color: #00cec9;
-            --accent-color: #fd79a8;
-        }
-
-        .theme-forest {
-            --primary-color: #00b894;
-            --secondary-color: #55efc4;
-            --accent-color: #ffeaa7;
-        }
-
-        .theme-sunset {
-            --primary-color: #e17055;
-            --secondary-color: #fdcb6e;
-            --accent-color: #6c5ce7;
-        }
-
-        .theme-dark {
-            --primary-color: #6c5ce7;
-            --secondary-color: #a29bfe;
-            --accent-color: #fd79a8;
-            --light-color: #2d3436;
-            --dark-color: #dfe6e9;
         }
 
         * {
@@ -56,40 +30,34 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #f5f7fa;
             color: var(--dark-color);
             line-height: 1.6;
             min-height: 100vh;
-            transition: var(--transition);
-        }
-
-        body.theme-dark {
-            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+            padding-bottom: 80px;
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
             padding: 0 15px;
         }
 
-        /* Header Styles */
-        header {
+        /* Header Móvil */
+        .mobile-header {
             background: var(--gradient);
             color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 1rem;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            transition: var(--transition);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .header-content {
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
         }
 
         .logo {
@@ -99,94 +67,83 @@
         }
 
         .logo h1 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
-        .logo-icon {
-            font-size: 1.8rem;
-        }
-
-        nav ul {
+        .user-menu {
             display: flex;
-            list-style: none;
+            gap: 15px;
         }
 
-        nav ul li {
-            margin-left: 1.5rem;
+        .user-menu i {
+            font-size: 1.2rem;
         }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 0.8rem;
-            border-radius: 20px;
+        .date-display {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        nav ul li a:hover, nav ul li a.active {
-            background-color: rgba(255,255,255,0.2);
-        }
-
-        .theme-selector {
+        /* Navegación inferior */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
             display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            margin-left: 20px;
-        }
-
-        .theme-btn {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 2px solid white;
-            cursor: pointer;
+            text-decoration: none;
+            color: #777;
+            font-size: 0.75rem;
             transition: var(--transition);
+            padding: 5px;
         }
 
-        .theme-btn:hover {
-            transform: scale(1.2);
+        .nav-item.active {
+            color: var(--primary-color);
+            transform: translateY(-5px);
         }
 
-        .theme-default {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        .nav-icon {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .theme-ocean-btn {
-            background: linear-gradient(135deg, #0984e3, #00cec9);
+        .nav-item.active .nav-icon {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .theme-forest-btn {
-            background: linear-gradient(135deg, #00b894, #55efc4);
-        }
-
-        .theme-sunset-btn {
-            background: linear-gradient(135deg, #e17055, #fdcb6e);
-        }
-
-        .theme-dark-btn {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-        }
-
-        /* Dashboard Personal */
-        .dashboard {
-            padding: 2rem 0;
-        }
-
-        .welcome-section {
+        /* Sección de Bienvenida */
+        .welcome-card {
             background: var(--gradient);
             color: white;
-            padding: 2rem;
             border-radius: var(--radius);
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
-            transition: var(--transition);
         }
 
-        .welcome-section::before {
+        .welcome-card::before {
             content: "";
             position: absolute;
             top: -50%;
@@ -197,59 +154,174 @@
             transform: rotate(30deg);
         }
 
-        .welcome-content {
+        .welcome-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
             position: relative;
-            z-index: 1;
-        }
-
-        .welcome-text h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .welcome-text p {
-            opacity: 0.9;
+            z-index: 2;
         }
 
         .user-avatar {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* Cards Grid */
-        .cards-grid {
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            width: 70%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .stat-info {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* Acciones Rápidas */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .action-btn {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.2rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-color);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        .action-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            height: 40px;
+        }
+
+        .action-emoji {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            height: 40px;
+        }
+
+        /* Cards Deslizables */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .section-title h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+
+        .see-all {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .cards-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            margin: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .cards-scroll::-webkit-scrollbar {
+            display: none;
         }
 
         .card {
-            background-color: white;
+            background: white;
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.2rem;
+            min-width: 280px;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
+            position: relative;
         }
 
-        .theme-dark .card {
-            background-color: #2d3436;
-            color: #dfe6e9;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        .card:active {
+            transform: scale(0.98);
         }
 
         .card-header {
@@ -259,25 +331,21 @@
         }
 
         .card-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            margin-right: 10px;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
 
         .card h3 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--primary-color);
-        }
-
-        .theme-dark .card h3 {
-            color: var(--secondary-color);
         }
 
         .task-item, .event-item, .person-item {
@@ -287,61 +355,54 @@
             border-bottom: 1px solid #eee;
         }
 
-        .theme-dark .task-item, 
-        .theme-dark .event-item, 
-        .theme-dark .person-item {
-            border-bottom: 1px solid #636e72;
-        }
-
         .task-item:last-child, .event-item:last-child, .person-item:last-child {
             border-bottom: none;
         }
 
         .task-checkbox {
             margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-color);
         }
 
         .task-text {
             flex-grow: 1;
+            font-size: 0.9rem;
         }
 
         .task-priority {
-            padding: 0.2rem 0.5rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 600;
         }
 
         .priority-high {
-            background-color: rgba(255, 107, 107, 0.2);
+            background: rgba(255, 107, 107, 0.2);
             color: var(--danger-color);
         }
 
         .priority-medium {
-            background-color: rgba(253, 203, 110, 0.2);
+            background: rgba(253, 203, 110, 0.2);
             color: #e17055;
         }
 
         .priority-low {
-            background-color: rgba(0, 184, 148, 0.2);
+            background: rgba(0, 184, 148, 0.2);
             color: var(--success-color);
         }
 
         .event-time {
-            background-color: rgba(37, 117, 252, 0.1);
+            background: rgba(37, 117, 252, 0.1);
             color: var(--secondary-color);
             padding: 0.3rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
             margin-right: 10px;
             font-weight: 600;
-        }
-
-        .theme-dark .event-time {
-            background-color: rgba(162, 155, 254, 0.2);
+            min-width: 60px;
+            text-align: center;
         }
 
         .person-avatar {
@@ -357,131 +418,80 @@
             font-size: 1.2rem;
         }
 
-        .person-name {
+        .person-info {
             flex-grow: 1;
+        }
+
+        .person-name {
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .person-relation {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #777;
         }
 
-        .theme-dark .person-relation {
-            color: #b2bec3;
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .action-btn {
+        /* Botones de acción en cards */
+        .card-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
             display: flex;
-            flex-direction: column;
+            gap: 5px;
+        }
+
+        .action-btn-small {
+            background: rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            background-color: white;
-            border-radius: var(--radius);
-            padding: 1.5rem 1rem;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            text-decoration: none;
-            color: var(--dark-color);
             cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.8rem;
         }
 
-        .theme-dark .action-btn {
-            background-color: #2d3436;
-            color: #dfe6e9;
+        .action-btn-small:hover {
+            background: rgba(0,0,0,0.2);
         }
 
-        .action-btn:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-            color: var(--primary-color);
+        .delete-btn {
+            color: var(--danger-color);
         }
 
-        .action-icon {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        /* Bienestar Social */
-        .wellbeing-section {
-            margin-top: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .theme-dark .section-title {
+        .edit-btn {
             color: var(--secondary-color);
         }
 
-        .wellbeing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .emotion-form, .emotion-analysis {
-            background-color: white;
+        /* Bienestar Social */
+        .emotion-form {
+            background: white;
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
             box-shadow: var(--card-shadow);
-            transition: var(--transition);
-        }
-
-        .theme-dark .emotion-form,
-        .theme-dark .emotion-analysis {
-            background-color: #2d3436;
-            color: #dfe6e9;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--dark-color);
-        }
-
-        .theme-dark .form-group label {
-            color: #dfe6e9;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 0.8rem;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: var(--transition);
-            background-color: white;
-            color: var(--dark-color);
-        }
-
-        .theme-dark .form-control {
-            background-color: #636e72;
-            border-color: #636e72;
-            color: #dfe6e9;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
         }
 
         .emotion-tags {
@@ -492,31 +502,36 @@
         }
 
         .emotion-tag {
-            padding: 0.4rem 0.8rem;
-            background-color: #f1f2f6;
+            padding: 0.6rem 0.8rem;
+            background: #f1f2f6;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .theme-dark .emotion-tag {
-            background-color: #636e72;
-            color: #dfe6e9;
-        }
-
-        .emotion-tag:hover, .emotion-tag.active {
-            background-color: var(--primary-color);
+        .emotion-tag.active {
+            background: var(--primary-color);
             color: white;
+            transform: scale(1.05);
+        }
+
+        .emoji {
+            font-size: 1rem;
         }
 
         .btn {
             padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            width: 100%;
+            font-size: 1rem;
         }
 
         .btn-primary {
@@ -524,89 +539,33 @@
             color: white;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .btn-primary:active {
+            transform: scale(0.98);
         }
 
-        .btn-block {
-            width: 100%;
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #f1f2f6;
+            color: var(--dark-color);
         }
 
         .analysis-result {
-            background-color: #f8f9fa;
-            border-radius: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
             padding: 1rem;
             margin-top: 1rem;
         }
 
-        .theme-dark .analysis-result {
-            background-color: #636e72;
-            color: #dfe6e9;
-        }
-
         .recommendation {
-            background-color: rgba(0, 184, 148, 0.1);
+            background: rgba(0, 184, 148, 0.1);
             border-left: 4px solid var(--success-color);
             padding: 1rem;
             margin-top: 1rem;
             border-radius: 0 8px 8px 0;
-        }
-
-        .theme-dark .recommendation {
-            background-color: rgba(0, 184, 148, 0.2);
-        }
-
-        /* Stats Section */
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .theme-dark .stat-card {
-            background: #2d3436;
-            color: #dfe6e9;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .theme-dark .stat-value {
-            color: var(--secondary-color);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        .theme-dark .stat-label {
-            color: #b2bec3;
         }
 
         /* Modal */
@@ -615,42 +574,42 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
             align-items: center;
             justify-content: center;
+            padding: 1rem;
             backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background-color: white;
-            width: 90%;
-            max-width: 500px;
+            background: white;
+            width: 100%;
+            max-width: 400px;
             border-radius: var(--radius);
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition);
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: modalAppear 0.3s ease;
         }
 
-        .theme-dark .modal-content {
-            background-color: #2d3436;
-            color: #dfe6e9;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-            opacity: 1;
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .close-modal {
@@ -661,355 +620,261 @@
             color: var(--dark-color);
         }
 
-        .theme-dark .close-modal {
-            color: #dfe6e9;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 2rem 0;
-            margin-top: 2rem;
-        }
-
-        .theme-dark footer {
-            background-color: #1e272e;
-        }
-
-        .footer-content {
+        .modal-actions {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 10px;
+            margin-top: 1.5rem;
         }
 
-        .footer-links a {
+        .modal-actions .btn {
+            width: auto;
+            flex: 1;
+        }
+
+        /* Estados vacíos */
+        .empty-state {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #777;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+
+        /* Notificaciones */
+        .notification {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success-color);
             color: white;
-            margin-left: 1rem;
-            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: notificationSlide 0.3s ease;
+            display: none;
         }
 
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+        @keyframes notificationSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
             }
-
-            nav ul {
-                margin-top: 1rem;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            nav ul li {
-                margin: 0.3rem;
-            }
-
-            .theme-selector {
-                margin-top: 1rem;
-                margin-left: 0;
-            }
-
-            .welcome-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .user-avatar {
-                margin-top: 1rem;
-            }
-
-            .wellbeing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                margin-top: 1rem;
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h1>Mi Vida UPMH</h1>
+    <!-- Header Móvil -->
+    <header class="mobile-header">
+        <div class="header-top">
+            <div class="logo">
+                <h1>Mi Vida UPMH 🎓</h1>
+            </div>
+            <div class="user-menu">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+        <div class="date-display" id="current-date">Cargando fecha...</div>
+    </header>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification"></div>
+
+    <main class="container">
+        <!-- Tarjeta de Bienvenida -->
+        <div class="welcome-card">
+            <div class="welcome-header">
+                <div>
+                    <h2>¡Hola de nuevo! 👋</h2>
+                    <p id="welcome-message">Cargando...</p>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="active">Dashboard</a></li>
-                        <li><a href="#">Horario</a></li>
-                        <li><a href="#">Calificaciones</a></li>
-                        <li><a href="#">Bienestar</a></li>
-                        <li><a href="#">Recursos</a></li>
-                    </ul>
-                </nav>
-                <div class="theme-selector">
-                    <div class="theme-btn theme-default" data-theme="default"></div>
-                    <div class="theme-btn theme-ocean-btn" data-theme="ocean"></div>
-                    <div class="theme-btn theme-forest-btn" data-theme="forest"></div>
-                    <div class="theme-btn theme-sunset-btn" data-theme="sunset"></div>
-                    <div class="theme-btn theme-dark-btn" data-theme="dark"></div>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-icon">📚</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="task-count">0/0</div>
+                    <div class="stat-label">Tareas</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">❤️</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="emotion-count">0</div>
+                    <div class="stat-label">Emociones</div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <main class="container">
-        <section class="dashboard">
-            <div class="welcome-section">
-                <div class="welcome-content">
-                    <div class="welcome-text">
-                        <h2>¡Hola de nuevo! ¿Cómo estás hoy?</h2>
-                        <p>Tu progreso semanal: 7 de 10 tareas completadas</p>
+        <!-- Acciones Rápidas -->
+        <div class="quick-actions">
+            <button class="action-btn" id="add-task-btn">
+                <div class="action-emoji">📝</div>
+                <span>Nueva Tarea</span>
+            </button>
+            <button class="action-btn" id="add-event-btn">
+                <div class="action-emoji">📅</div>
+                <span>Agregar Evento</span>
+            </button>
+            <button class="action-btn" id="add-person-btn">
+                <div class="action-emoji">👥</div>
+                <span>Agregar Persona</span>
+            </button>
+            <button class="action-btn" id="add-emotion-btn">
+                <div class="action-emoji">😊</div>
+                <span>Registrar Emoción</span>
+            </button>
+        </div>
+
+        <!-- Tareas Pendientes -->
+        <div class="section-title">
+            <h3>Tareas Pendientes 📋</h3>
+            <a href="#" class="see-all" id="see-all-tasks">Ver todas</a>
+        </div>
+        <div class="cards-scroll" id="tasks-scroll">
+            <!-- Las tareas se cargarán dinámicamente -->
+        </div>
+
+        <!-- Próximos Eventos -->
+        <div class="section-title">
+            <h3>Próximos Eventos 🗓️</h3>
+            <a href="#" class="see-all" id="see-all-events">Ver todos</a>
+        </div>
+        <div class="cards-scroll" id="events-scroll">
+            <!-- Los eventos se cargarán dinámicamente -->
+        </div>
+
+        <!-- Personas Especiales -->
+        <div class="section-title">
+            <h3>Personas Especiales 👨‍👩‍👧‍👦</h3>
+            <a href="#" class="see-all" id="see-all-people">Ver todas</a>
+        </div>
+        <div class="cards-scroll" id="people-scroll">
+            <!-- Las personas se cargarán dinámicamente -->
+        </div>
+
+        <!-- Bienestar Social -->
+        <div class="section-title">
+            <h3>Bienestar Social ❤️</h3>
+        </div>
+
+        <div class="emotion-form">
+            <form id="emotion-form">
+                <div class="form-group">
+                    <label for="person-select">Persona:</label>
+                    <select id="person-select" class="form-control" required>
+                        <option value="">Selecciona una persona</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Emociones que sentiste:</label>
+                    <div class="emotion-tags">
+                        <span class="emotion-tag" data-emotion="Alegría">
+                            <span class="emoji">😊</span> Alegría
+                        </span>
+                        <span class="emotion-tag" data-emotion="Tristeza">
+                            <span class="emoji">😢</span> Tristeza
+                        </span>
+                        <span class="emotion-tag" data-emotion="Enojo">
+                            <span class="emoji">😠</span> Enojo
+                        </span>
+                        <span class="emotion-tag" data-emotion="Miedo">
+                            <span class="emoji">😨</span> Miedo
+                        </span>
+                        <span class="emotion-tag" data-emotion="Sorpresa">
+                            <span class="emoji">😲</span> Sorpresa
+                        </span>
+                        <span class="emotion-tag" data-emotion="Confianza">
+                            <span class="emoji">😌</span> Confianza
+                        </span>
+                        <span class="emotion-tag" data-emotion="Amor">
+                            <span class="emoji">❤️</span> Amor
+                        </span>
+                        <span class="emotion-tag" data-emotion="Frustración">
+                            <span class="emoji">😤</span> Frustración
+                        </span>
                     </div>
-                    <div class="user-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
+                    <input type="hidden" id="selected-emotions">
+                </div>
+                <div class="form-group">
+                    <label for="emotion-description">Descripción:</label>
+                    <textarea id="emotion-description" class="form-control" rows="3" placeholder="Describe la situación y tus sentimientos..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar Emoción ✨</button>
+            </form>
+        </div>
+
+        <!-- Análisis de Relaciones -->
+        <div class="emotion-form">
+            <h3>Análisis de Relaciones 🔍</h3>
+            <div class="form-group">
+                <label for="analysis-person">Persona a analizar:</label>
+                <select id="analysis-person" class="form-control">
+                    <option value="">Todas las personas</option>
+                </select>
+            </div>
+            <button id="analyze-btn" class="btn btn-primary">Analizar Relación 📊</button>
+
+            <div id="analysis-result" class="analysis-result" style="display: none;">
+                <h4>Resultados del análisis:</h4>
+                <p id="analysis-text"></p>
+                <div id="recommendation" class="recommendation" style="display: none;">
+                    <h4>Recomendación 💡</h4>
+                    <p id="recommendation-text"></p>
                 </div>
             </div>
-
-            <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="stat-value">7/10</div>
-                    <div class="stat-label">Tareas Completadas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="stat-value">85%</div>
-                    <div class="stat-label">Rendimiento Académico</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="stat-value">12</div>
-                    <div class="stat-label">Emociones Registradas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Personas Especiales</div>
-                </div>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <h3>Tareas Pendientes</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="task-item">
-                            <input type="checkbox" class="task-checkbox">
-                            <div class="task-text">Proyecto de Bases de Datos</div>
-                            <div class="task-priority priority-high">Alta</div>
-                        </div>
-                        <div class="task-item">
-                            <input type="checkbox" class="task-checkbox">
-                            <div class="task-text">Ensayo de Ética</div>
-                            <div class="task-priority priority-medium">Media</div>
-                        </div>
-                        <div class="task-item">
-                            <input type="checkbox" class="task-checkbox">
-                            <div class="task-text">Ejercicios de Cálculo</div>
-                            <div class="task-priority priority-low">Baja</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h3>Próximos Eventos</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="event-item">
-                            <div class="event-time">15:30</div>
-                            <div class="event-text">Clase de Programación</div>
-                        </div>
-                        <div class="event-item">
-                            <div class="event-time">17:00</div>
-                            <div class="event-text">Reunión equipo proyecto</div>
-                        </div>
-                        <div class="event-item">
-                            <div class="event-time">Mañana</div>
-                            <div class="event-text">Entrega de tarea de Física</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Personas Especiales</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="person-item">
-                            <div class="person-avatar">
-                                <i class="fas fa-user-friends"></i>
-                            </div>
-                            <div class="person-info">
-                                <div class="person-name">Ana García</div>
-                                <div class="person-relation">Mejor amiga</div>
-                            </div>
-                        </div>
-                        <div class="person-item">
-                            <div class="person-avatar">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <div class="person-info">
-                                <div class="person-name">Carlos Mendoza</div>
-                                <div class="person-relation">Pareja</div>
-                            </div>
-                        </div>
-                        <div class="person-item">
-                            <div class="person-avatar">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <div class="person-info">
-                                <div class="person-name">Prof. Rodríguez</div>
-                                <div class="person-relation">Mentor</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 style="margin-bottom: 1rem; color: var(--primary-color);">Acciones Rápidas</h2>
-            <div class="quick-actions">
-                <a href="#" class="action-btn" id="add-task-btn">
-                    <div class="action-icon">
-                        <i class="fas fa-plus-circle"></i>
-                    </div>
-                    <span>Agregar Tarea</span>
-                </a>
-                <a href="#" class="action-btn" id="add-event-btn">
-                    <div class="action-icon">
-                        <i class="fas fa-calendar-plus"></i>
-                    </div>
-                    <span>Agregar Evento</span>
-                </a>
-                <a href="#" class="action-btn" id="add-person-btn">
-                    <div class="action-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <span>Agregar Persona</span>
-                </a>
-                <a href="#" class="action-btn" id="add-emotion-btn">
-                    <div class="action-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <span>Registrar Emoción</span>
-                </a>
-            </div>
-
-            <!-- Sección de Bienestar Social -->
-            <section class="wellbeing-section">
-                <h2 class="section-title">Bienestar Social</h2>
-                <div class="wellbeing-grid">
-                    <div class="emotion-form">
-                        <h3>Registrar Emociones</h3>
-                        <form id="emotion-form">
-                            <div class="form-group">
-                                <label for="person-select">Persona:</label>
-                                <select id="person-select" class="form-control" required>
-                                    <option value="">Selecciona una persona</option>
-                                    <option value="Ana García">Ana García</option>
-                                    <option value="Carlos Mendoza">Carlos Mendoza</option>
-                                    <option value="Prof. Rodríguez">Prof. Rodríguez</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="emotion-date">Fecha:</label>
-                                <input type="date" id="emotion-date" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Emociones que sentiste:</label>
-                                <div class="emotion-tags">
-                                    <span class="emotion-tag" data-emotion="Alegría">Alegría</span>
-                                    <span class="emotion-tag" data-emotion="Tristeza">Tristeza</span>
-                                    <span class="emotion-tag" data-emotion="Enojo">Enojo</span>
-                                    <span class="emotion-tag" data-emotion="Miedo">Miedo</span>
-                                    <span class="emotion-tag" data-emotion="Sorpresa">Sorpresa</span>
-                                    <span class="emotion-tag" data-emotion="Confianza">Confianza</span>
-                                    <span class="emotion-tag" data-emotion="Amor">Amor</span>
-                                    <span class="emotion-tag" data-emotion="Frustración">Frustración</span>
-                                </div>
-                                <input type="hidden" id="selected-emotions">
-                            </div>
-                            <div class="form-group">
-                                <label for="emotion-description">Descripción:</label>
-                                <textarea id="emotion-description" class="form-control" rows="3" placeholder="Describe la situación y tus sentimientos..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Registrar Emoción</button>
-                        </form>
-                    </div>
-
-                    <div class="emotion-analysis">
-                        <h3>Análisis de Relaciones</h3>
-                        <div class="form-group">
-                            <label for="analysis-person">Selecciona una persona para analizar:</label>
-                            <select id="analysis-person" class="form-control">
-                                <option value="">Todas las personas</option>
-                                <option value="Ana García">Ana García</option>
-                                <option value="Carlos Mendoza">Carlos Mendoza</option>
-                                <option value="Prof. Rodríguez">Prof. Rodríguez</option>
-                            </select>
-                        </div>
-                        <button id="analyze-btn" class="btn btn-primary">Analizar Relación</button>
-
-                        <div id="analysis-result" class="analysis-result" style="display: none;">
-                            <h4>Resultados del análisis:</h4>
-                            <p id="analysis-text"></p>
-                            <div id="recommendation" class="recommendation" style="display: none;">
-                                <h4>Recomendación:</h4>
-                                <p id="recommendation-text"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </section>
+        </div>
     </main>
 
-    <!-- Modal para agregar tarea -->
+    <!-- Navegación Inferior -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-calendar nav-icon"></i>
+            <span>Horario</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-bar nav-icon"></i>
+            <span>Progreso</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-heart nav-icon"></i>
+            <span>Bienestar</span>
+        </a>
+    </nav>
+
+    <!-- Modal para Agregar Tarea -->
     <div class="modal" id="task-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Agregar Nueva Tarea</h3>
+                <h3>Nueva Tarea 📝</h3>
                 <button class="close-modal">&times;</button>
             </div>
             <form id="task-form">
                 <div class="form-group">
-                    <label for="task-title">Título de la tarea</label>
+                    <label for="task-title">Título</label>
                     <input type="text" id="task-title" class="form-control" placeholder="Ej: Proyecto de Programación" required>
                 </div>
                 <div class="form-group">
@@ -1019,183 +884,692 @@
                 <div class="form-group">
                     <label for="task-priority">Prioridad</label>
                     <select id="task-priority" class="form-control">
-                        <option value="low">Baja</option>
-                        <option value="medium">Media</option>
-                        <option value="high">Alta</option>
+                        <option value="low">🟢 Baja</option>
+                        <option value="medium">🟡 Media</option>
+                        <option value="high">🔴 Alta</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="task-deadline">Fecha límite</label>
                     <input type="date" id="task-deadline" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Agregar Tarea</button>
+                <button type="submit" class="btn btn-primary">Agregar Tarea ✅</button>
             </form>
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="copyright">
-                    &copy; 2023 Mi Vida UPMH - Tu herramienta personal universitaria
+    <!-- Modal para Agregar Persona -->
+    <div class="modal" id="person-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Persona 👥</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="person-form">
+                <div class="form-group">
+                    <label for="person-name">Nombre</label>
+                    <input type="text" id="person-name" class="form-control" placeholder="Nombre de la persona" required>
                 </div>
-                <div class="footer-links">
-                    <a href="#">Configuración</a>
-                    <a href="#">Ayuda</a>
-                    <a href="#">Privacidad</a>
+                <div class="form-group">
+                    <label for="person-relation">Relación</label>
+                    <select id="person-relation" class="form-control" required>
+                        <option value="">Selecciona una relación</option>
+                        <option value="Amigo/a">👫 Amigo/a</option>
+                        <option value="Pareja">💑 Pareja</option>
+                        <option value="Familiar">👨‍👩‍👧‍👦 Familiar</option>
+                        <option value="Compañero/a de clase">🎓 Compañero/a de clase</option>
+                        <option value="Profesor/a">👨‍🏫 Profesor/a</option>
+                        <option value="Mentor">🧠 Mentor</option>
+                        <option value="Otro">❓ Otro</option>
+                    </select>
                 </div>
+                <button type="submit" class="btn btn-primary">Agregar Persona ✅</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Agregar Evento -->
+    <div class="modal" id="event-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nuevo Evento 📅</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="event-form">
+                <div class="form-group">
+                    <label for="event-title">Título</label>
+                    <input type="text" id="event-title" class="form-control" placeholder="Ej: Clase de Programación" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Fecha</label>
+                    <input type="date" id="event-date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-time">Hora</label>
+                    <input type="time" id="event-time" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Descripción</label>
+                    <textarea id="event-description" class="form-control" rows="3" placeholder="Detalles del evento..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Evento ✅</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación de Eliminación -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="delete-title">Confirmar Eliminación 🗑️</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p id="delete-message">¿Estás seguro de que quieres eliminar este elemento?</p>
+            <div class="modal-actions">
+                <button class="btn btn-cancel" id="cancel-delete">Cancelar</button>
+                <button class="btn btn-danger" id="confirm-delete">Eliminar</button>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Inicialización de datos
-        let emotionsData = [
-            { person: "Ana García", date: "2023-10-15", emotions: ["Alegría", "Confianza"], description: "Pasamos un buen rato estudiando juntas" },
-            { person: "Carlos Mendoza", date: "2023-10-14", emotions: ["Amor", "Alegría"], description: "Cenamos juntos y hablamos de nuestro futuro" },
-            { person: "Prof. Rodríguez", date: "2023-10-12", emotions: ["Frustración", "Enojo"], description: "No entendí bien la explicación en clase" }
-        ];
+        // ========== DATOS Y ESTADO ==========
+        let appData = {
+            tasks: [
+                { id: 1, title: "Proyecto de Bases de Datos", completed: false, priority: "high", deadline: "2023-10-20", description: "Entregar el proyecto final" },
+                { id: 2, title: "Ensayo de Ética", completed: false, priority: "medium", deadline: "2023-10-18", description: "Ensayo sobre dilemas éticos" },
+                { id: 3, title: "Ejercicios de Cálculo", completed: true, priority: "low", deadline: "2023-10-15", description: "Capítulo 5 ejercicios 1-10" }
+            ],
+            events: [
+                { id: 1, title: "Clase de Programación", date: "2023-10-16", time: "15:30", description: "Aula 304" },
+                { id: 2, title: "Reunión equipo proyecto", date: "2023-10-16", time: "17:00", description: "Biblioteca central" },
+                { id: 3, title: "Entrega de tarea de Física", date: "2023-10-17", time: "23:59", description: "Subir al campus virtual" }
+            ],
+            people: [
+                { id: 1, name: "Ana García", relation: "Amigo/a", emoji: "👫" },
+                { id: 2, name: "Carlos Mendoza", relation: "Pareja", emoji: "💑" },
+                { id: 3, name: "Prof. Rodríguez", relation: "Profesor/a", emoji: "👨‍🏫" }
+            ],
+            emotions: [
+                { id: 1, person: "Ana García", date: "2023-10-15", emotions: ["Alegría", "Confianza"], description: "Pasamos un buen rato estudiando juntas" },
+                { id: 2, person: "Carlos Mendoza", date: "2023-10-14", emotions: ["Amor", "Alegría"], description: "Cenamos juntos y hablamos de nuestro futuro" },
+                { id: 3, person: "Prof. Rodríguez", date: "2023-10-12", emotions: ["Frustración", "Enojo"], description: "No entendí bien la explicación en clase" }
+            ]
+        };
 
-        // Funcionalidad del modal
-        const addTaskBtn = document.getElementById('add-task-btn');
-        const taskModal = document.getElementById('task-modal');
-        const closeModal = document.querySelector('.close-modal');
-        const taskForm = document.getElementById('task-form');
+        // Variables para el sistema de eliminación
+        let itemToDelete = null;
+        let deleteType = null;
 
-        addTaskBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            taskModal.style.display = 'flex';
-            setTimeout(() => {
-                taskModal.classList.add('show');
-            }, 10);
+        // ========== INICIALIZACIÓN ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            renderAllData();
         });
 
-        closeModal.addEventListener('click', function() {
-            taskModal.classList.remove('show');
-            setTimeout(() => {
-                taskModal.style.display = 'none';
-            }, 300);
-        });
-
-        window.addEventListener('click', function(e) {
-            if (e.target === taskModal) {
-                taskModal.classList.remove('show');
-                setTimeout(() => {
-                    taskModal.style.display = 'none';
-                }, 300);
+        function initializeApp() {
+            // Cargar datos guardados
+            const savedData = localStorage.getItem('upmhAppData');
+            if (savedData) {
+                appData = JSON.parse(savedData);
             }
-        });
 
-        // Manejo del formulario de tareas
-        taskForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const title = document.getElementById('task-title').value;
-            const priority = document.getElementById('task-priority').value;
+            // Actualizar fecha y hora
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
 
-            // Aquí normalmente enviaríamos los datos a un servidor
-            // Por ahora solo cerramos el modal
-            taskModal.classList.remove('show');
-            setTimeout(() => {
-                taskModal.style.display = 'none';
-            }, 300);
+            // Actualizar mensaje de bienvenida
+            updateWelcomeMessage();
+        }
 
-            // Mostrar mensaje de éxito
-            alert(`Tarea "${title}" agregada correctamente con prioridad ${priority}`);
+        function setupEventListeners() {
+            // Modales
+            document.getElementById('add-task-btn').addEventListener('click', openTaskModal);
+            document.getElementById('add-person-btn').addEventListener('click', openPersonModal);
+            document.getElementById('add-event-btn').addEventListener('click', openEventModal);
+            document.getElementById('add-emotion-btn').addEventListener('click', scrollToEmotions);
 
-            // Limpiar formulario
-            taskForm.reset();
-        });
+            // Formularios
+            document.getElementById('task-form').addEventListener('submit', handleTaskSubmit);
+            document.getElementById('person-form').addEventListener('submit', handlePersonSubmit);
+            document.getElementById('event-form').addEventListener('submit', handleEventSubmit);
+            document.getElementById('emotion-form').addEventListener('submit', handleEmotionSubmit);
+            document.getElementById('analyze-btn').addEventListener('click', analyzeRelationships);
 
-        // Marcar tareas como completadas
-        const checkboxes = document.querySelectorAll('.task-checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const taskText = this.nextElementSibling;
-                if (this.checked) {
-                    taskText.style.textDecoration = 'line-through';
-                    taskText.style.opacity = '0.7';
-                } else {
-                    taskText.style.textDecoration = 'none';
-                    taskText.style.opacity = '1';
-                }
+            // Eliminación
+            document.getElementById('cancel-delete').addEventListener('click', closeDeleteModal);
+            document.getElementById('confirm-delete').addEventListener('click', confirmDelete);
+
+            // Cerrar modales
+            document.querySelectorAll('.close-modal').forEach(btn => {
+                btn.addEventListener('click', closeAllModals);
             });
-        });
 
-        // Funcionalidad de etiquetas de emociones
-        const emotionTags = document.querySelectorAll('.emotion-tag');
-        const selectedEmotionsInput = document.getElementById('selected-emotions');
-        let selectedEmotions = [];
-
-        emotionTags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                this.classList.toggle('active');
-                const emotion = this.getAttribute('data-emotion');
-
-                if (this.classList.contains('active')) {
-                    selectedEmotions.push(emotion);
-                } else {
-                    const index = selectedEmotions.indexOf(emotion);
-                    if (index > -1) {
-                        selectedEmotions.splice(index, 1);
-                    }
-                }
-
-                selectedEmotionsInput.value = selectedEmotions.join(', ');
+            // Navegación
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
             });
-        });
 
-        // Manejo del formulario de emociones
-        const emotionForm = document.getElementById('emotion-form');
-        emotionForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Ver todos
+            document.getElementById('see-all-tasks').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAllItems('tasks');
+            });
+            document.getElementById('see-all-events').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAllItems('events');
+            });
+            document.getElementById('see-all-people').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAllItems('people');
+            });
+        }
 
-            const person = document.getElementById('person-select').value;
-            const date = document.getElementById('emotion-date').value;
-            const description = document.getElementById('emotion-description').value;
+        // ========== RENDERIZADO ==========
+        function renderAllData() {
+            renderTasks();
+            renderEvents();
+            renderPeople();
+            updateStats();
+            populatePersonSelects();
+        }
 
-            if (!person || !date || selectedEmotions.length === 0) {
-                alert('Por favor completa todos los campos obligatorios');
+        function renderTasks() {
+            const container = document.getElementById('tasks-scroll');
+            const pendingTasks = appData.tasks.filter(task => !task.completed);
+
+            if (pendingTasks.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <div class="empty-state">
+                            <div class="empty-icon">🎉</div>
+                            <p>¡No tienes tareas pendientes!</p>
+                        </div>
+                    </div>
+                `;
                 return;
             }
 
-            // Guardar la emoción
-            emotionsData.push({
-                person: person,
-                date: date,
-                emotions: [...selectedEmotions],
-                description: description
+            container.innerHTML = pendingTasks.map(task => `
+                <div class="card">
+                    <div class="card-actions">
+                        <button class="action-btn-small delete-btn" data-id="${task.id}" data-type="task">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" data-id="${task.id}" ${task.completed ? 'checked' : ''}>
+                        <div class="task-text">${task.title}</div>
+                        <div class="task-priority priority-${task.priority}">
+                            ${task.priority === 'high' ? '🔴' : task.priority === 'medium' ? '🟡' : '🟢'} ${task.priority}
+                        </div>
+                    </div>
+                    ${task.deadline ? `<div style="font-size: 0.8rem; color: #777; margin-top: 5px;">📅 ${formatDate(task.deadline)}</div>` : ''}
+                    ${task.description ? `<div style="font-size: 0.8rem; color: #777; margin-top: 5px;">${task.description}</div>` : ''}
+                </div>
+            `).join('');
+
+            // Agregar event listeners a los checkboxes
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const taskId = parseInt(this.getAttribute('data-id'));
+                    toggleTaskCompletion(taskId);
+                });
             });
 
-            alert('Emoción registrada correctamente');
-            emotionForm.reset();
+            // Agregar event listeners a los botones de eliminar
+            document.querySelectorAll('.delete-btn[data-type="task"]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const taskId = parseInt(this.getAttribute('data-id'));
+                    const task = appData.tasks.find(t => t.id === taskId);
+                    if (task) {
+                        openDeleteModal('task', taskId, task.title);
+                    }
+                });
+            });
+        }
 
-            // Limpiar emociones seleccionadas
-            emotionTags.forEach(tag => tag.classList.remove('active'));
-            selectedEmotions = [];
-            selectedEmotionsInput.value = '';
-        });
+        function renderEvents() {
+            const container = document.getElementById('events-scroll');
+            const today = new Date().toISOString().split('T')[0];
+            const upcomingEvents = appData.events.filter(event => event.date >= today)
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .slice(0, 3);
 
-        // Análisis de relaciones
-        const analyzeBtn = document.getElementById('analyze-btn');
-        const analysisResult = document.getElementById('analysis-result');
-        const analysisText = document.getElementById('analysis-text');
-        const recommendation = document.getElementById('recommendation');
-        const recommendationText = document.getElementById('recommendation-text');
+            if (upcomingEvents.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <div class="empty-state">
+                            <div class="empty-icon">📅</div>
+                            <p>No hay eventos próximos</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
 
-        analyzeBtn.addEventListener('click', function() {
+            container.innerHTML = upcomingEvents.map(event => `
+                <div class="card">
+                    <div class="card-actions">
+                        <button class="action-btn-small delete-btn" data-id="${event.id}" data-type="event">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-time">${event.time}</div>
+                        <div class="event-text">${event.title}</div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #777; margin-top: 5px;">
+                        📅 ${formatDate(event.date)} ${event.description ? `• ${event.description}` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            // Agregar event listeners a los botones de eliminar
+            document.querySelectorAll('.delete-btn[data-type="event"]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const eventId = parseInt(this.getAttribute('data-id'));
+                    const event = appData.events.find(e => e.id === eventId);
+                    if (event) {
+                        openDeleteModal('event', eventId, event.title);
+                    }
+                });
+            });
+        }
+
+        function renderPeople() {
+            const container = document.getElementById('people-scroll');
+
+            if (appData.people.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <div class="empty-state">
+                            <div class="empty-icon">👥</div>
+                            <p>No hay personas agregadas</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = appData.people.map(person => `
+                <div class="card">
+                    <div class="card-actions">
+                        <button class="action-btn-small delete-btn" data-id="${person.id}" data-type="person">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="person-item">
+                        <div class="person-avatar">${person.emoji}</div>
+                        <div class="person-info">
+                            <div class="person-name">${person.name}</div>
+                            <div class="person-relation">${person.relation}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Agregar event listeners a los botones de eliminar
+            document.querySelectorAll('.delete-btn[data-type="person"]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const personId = parseInt(this.getAttribute('data-id'));
+                    const person = appData.people.find(p => p.id === personId);
+                    if (person) {
+                        openDeleteModal('person', personId, person.name);
+                    }
+                });
+            });
+        }
+
+        // ========== FUNCIONALIDADES DE ELIMINACIÓN ==========
+        function openDeleteModal(type, id, name) {
+            itemToDelete = id;
+            deleteType = type;
+
+            const modal = document.getElementById('delete-modal');
+            const title = document.getElementById('delete-title');
+            const message = document.getElementById('delete-message');
+
+            let typeText = '';
+            switch(type) {
+                case 'task':
+                    typeText = 'tarea';
+                    break;
+                case 'event':
+                    typeText = 'evento';
+                    break;
+                case 'person':
+                    typeText = 'persona';
+                    break;
+            }
+
+            title.textContent = `Eliminar ${typeText} 🗑️`;
+            message.textContent = `¿Estás seguro de que quieres eliminar "${name}"? Esta acción no se puede deshacer.`;
+
+            modal.style.display = 'flex';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').style.display = 'none';
+            itemToDelete = null;
+            deleteType = null;
+        }
+
+        function confirmDelete() {
+            if (!itemToDelete || !deleteType) return;
+
+            switch(deleteType) {
+                case 'task':
+                    appData.tasks = appData.tasks.filter(task => task.id !== itemToDelete);
+                    // También eliminar emociones relacionadas con esta persona si es una persona
+                    const person = appData.people.find(p => p.id === itemToDelete);
+                    if (person) {
+                        appData.emotions = appData.emotions.filter(emotion => emotion.person !== person.name);
+                    }
+                    break;
+                case 'event':
+                    appData.events = appData.events.filter(event => event.id !== itemToDelete);
+                    break;
+                case 'person':
+                    const personToDelete = appData.people.find(p => p.id === itemToDelete);
+                    if (personToDelete) {
+                        appData.people = appData.people.filter(person => person.id !== itemToDelete);
+                        // Eliminar emociones relacionadas con esta persona
+                        appData.emotions = appData.emotions.filter(emotion => emotion.person !== personToDelete.name);
+                    }
+                    break;
+            }
+
+            saveData();
+            renderAllData();
+            closeDeleteModal();
+            showNotification('Elemento eliminado correctamente 🗑️');
+        }
+
+        function showAllItems(type) {
+            let title, items, emptyMessage, emptyIcon;
+
+            switch(type) {
+                case 'tasks':
+                    title = 'Todas las Tareas 📋';
+                    items = appData.tasks;
+                    emptyMessage = 'No hay tareas';
+                    emptyIcon = '📝';
+                    break;
+                case 'events':
+                    title = 'Todos los Eventos 📅';
+                    items = appData.events;
+                    emptyMessage = 'No hay eventos';
+                    emptyIcon = '🗓️';
+                    break;
+                case 'people':
+                    title = 'Todas las Personas 👥';
+                    items = appData.people;
+                    emptyMessage = 'No hay personas';
+                    emptyIcon = '👤';
+                    break;
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'flex';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${title}</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        ${items.length === 0 ? `
+                            <div class="empty-state">
+                                <div class="empty-icon">${emptyIcon}</div>
+                                <p>${emptyMessage}</p>
+                            </div>
+                        ` : items.map(item => {
+                            if (type === 'tasks') {
+                                return `
+                                    <div class="task-item" style="padding: 1rem; border-bottom: 1px solid #eee;">
+                                        <input type="checkbox" class="task-checkbox" data-id="${item.id}" ${item.completed ? 'checked' : ''}>
+                                        <div class="task-text">${item.title}</div>
+                                        <div class="task-priority priority-${item.priority}">
+                                            ${item.priority === 'high' ? '🔴' : item.priority === 'medium' ? '🟡' : '🟢'} ${item.priority}
+                                        </div>
+                                        <button class="action-btn-small delete-btn" data-id="${item.id}" data-type="task" style="margin-left: 10px;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                `;
+                            } else if (type === 'events') {
+                                return `
+                                    <div class="event-item" style="padding: 1rem; border-bottom: 1px solid #eee;">
+                                        <div class="event-time">${item.time}</div>
+                                        <div class="event-text">${item.title}</div>
+                                        <button class="action-btn-small delete-btn" data-id="${item.id}" data-type="event" style="margin-left: 10px;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div style="font-size: 0.8rem; color: #777; margin-bottom: 1rem;">
+                                        📅 ${formatDate(item.date)} ${item.description ? `• ${item.description}` : ''}
+                                    </div>
+                                `;
+                            } else if (type === 'people') {
+                                return `
+                                    <div class="person-item" style="padding: 1rem; border-bottom: 1px solid #eee;">
+                                        <div class="person-avatar">${item.emoji}</div>
+                                        <div class="person-info">
+                                            <div class="person-name">${item.name}</div>
+                                            <div class="person-relation">${item.relation}</div>
+                                        </div>
+                                        <button class="action-btn-small delete-btn" data-id="${item.id}" data-type="person" style="margin-left: 10px;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                `;
+                            }
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Event listeners para el modal
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+
+            // Event listeners para checkboxes de tareas
+            modal.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const taskId = parseInt(this.getAttribute('data-id'));
+                    toggleTaskCompletion(taskId);
+                    document.body.removeChild(modal);
+                    showAllItems('tasks');
+                });
+            });
+
+            // Event listeners para botones de eliminar
+            modal.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const deleteType = this.getAttribute('data-type');
+                    let item;
+
+                    if (deleteType === 'task') {
+                        item = appData.tasks.find(t => t.id === id);
+                    } else if (deleteType === 'event') {
+                        item = appData.events.find(e => e.id === id);
+                    } else if (deleteType === 'person') {
+                        item = appData.people.find(p => p.id === id);
+                    }
+
+                    if (item) {
+                        document.body.removeChild(modal);
+                        openDeleteModal(deleteType, id, deleteType === 'task' ? item.title : item.name);
+                    }
+                });
+            });
+        }
+
+        // ========== FUNCIONALIDADES EXISTENTES ==========
+        function openTaskModal() {
+            document.getElementById('task-modal').style.display = 'flex';
+            document.getElementById('task-deadline').valueAsDate = new Date();
+        }
+
+        function openPersonModal() {
+            document.getElementById('person-modal').style.display = 'flex';
+        }
+
+        function openEventModal() {
+            document.getElementById('event-modal').style.display = 'flex';
+            document.getElementById('event-date').valueAsDate = new Date();
+            document.getElementById('event-time').value = '09:00';
+        }
+
+        function scrollToEmotions() {
+            document.querySelector('.emotion-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeAllModals() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            itemToDelete = null;
+            deleteType = null;
+        }
+
+        function handleTaskSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+
+            const newTask = {
+                id: Date.now(),
+                title: document.getElementById('task-title').value,
+                description: document.getElementById('task-description').value,
+                priority: document.getElementById('task-priority').value,
+                deadline: document.getElementById('task-deadline').value,
+                completed: false
+            };
+
+            appData.tasks.push(newTask);
+            saveData();
+            renderAllData();
+            closeAllModals();
+            showNotification('¡Tarea agregada correctamente! ✅');
+            e.target.reset();
+        }
+
+        function handlePersonSubmit(e) {
+            e.preventDefault();
+
+            const relationEmojis = {
+                "Amigo/a": "👫",
+                "Pareja": "💑",
+                "Familiar": "👨‍👩‍👧‍👦",
+                "Compañero/a de clase": "🎓",
+                "Profesor/a": "👨‍🏫",
+                "Mentor": "🧠",
+                "Otro": "❓"
+            };
+
+            const newPerson = {
+                id: Date.now(),
+                name: document.getElementById('person-name').value,
+                relation: document.getElementById('person-relation').value,
+                emoji: relationEmojis[document.getElementById('person-relation').value] || "👤"
+            };
+
+            appData.people.push(newPerson);
+            saveData();
+            renderAllData();
+            closeAllModals();
+            showNotification('¡Persona agregada correctamente! 👥');
+            e.target.reset();
+        }
+
+        function handleEventSubmit(e) {
+            e.preventDefault();
+
+            const newEvent = {
+                id: Date.now(),
+                title: document.getElementById('event-title').value,
+                date: document.getElementById('event-date').value,
+                time: document.getElementById('event-time').value,
+                description: document.getElementById('event-description').value
+            };
+
+            appData.events.push(newEvent);
+            saveData();
+            renderAllData();
+            closeAllModals();
+            showNotification('¡Evento agregado correctamente! 📅');
+            e.target.reset();
+        }
+
+        function handleEmotionSubmit(e) {
+            e.preventDefault();
+
+            const selectedEmotions = Array.from(document.querySelectorAll('.emotion-tag.active'))
+                .map(tag => tag.getAttribute('data-emotion'));
+
+            if (selectedEmotions.length === 0) {
+                showNotification('Por favor selecciona al menos una emoción', 'error');
+                return;
+            }
+
+            const newEmotion = {
+                id: Date.now(),
+                person: document.getElementById('person-select').value,
+                date: new Date().toISOString().split('T')[0],
+                emotions: selectedEmotions,
+                description: document.getElementById('emotion-description').value
+            };
+
+            appData.emotions.push(newEmotion);
+            saveData();
+            showNotification('¡Emoción registrada correctamente! ❤️');
+            e.target.reset();
+
+            // Limpiar selección de emociones
+            document.querySelectorAll('.emotion-tag.active').forEach(tag => {
+                tag.classList.remove('active');
+            });
+        }
+
+        function toggleTaskCompletion(taskId) {
+            const task = appData.tasks.find(t => t.id === taskId);
+            if (task) {
+                task.completed = !task.completed;
+                saveData();
+                renderAllData();
+                showNotification(task.completed ? '¡Tarea completada! 🎉' : 'Tarea marcada como pendiente');
+            }
+        }
+
+        function analyzeRelationships() {
             const selectedPerson = document.getElementById('analysis-person').value;
+            let filteredEmotions = appData.emotions;
 
-            // Filtrar emociones por persona si se seleccionó una
-            let filteredEmotions = emotionsData;
             if (selectedPerson) {
-                filteredEmotions = emotionsData.filter(entry => entry.person === selectedPerson);
+                filteredEmotions = appData.emotions.filter(entry => entry.person === selectedPerson);
             }
 
             if (filteredEmotions.length === 0) {
-                analysisText.textContent = 'No hay suficientes datos para analizar. Registra más emociones primero.';
-                recommendation.style.display = 'none';
+                document.getElementById('analysis-text').textContent = 'No hay suficientes datos para analizar. Registra más emociones primero.';
+                document.getElementById('recommendation').style.display = 'none';
             } else {
-                // Análisis simple de emociones
                 const emotionCount = {};
                 filteredEmotions.forEach(entry => {
                     entry.emotions.forEach(emotion => {
@@ -1203,17 +1577,13 @@
                     });
                 });
 
-                // Encontrar emociones predominantes
                 const sortedEmotions = Object.entries(emotionCount)
                     .sort((a, b) => b[1] - a[1])
                     .slice(0, 3);
 
-                let analysis = '';
-                if (selectedPerson) {
-                    analysis = `En tu relación con ${selectedPerson}, las emociones más frecuentes son: `;
-                } else {
-                    analysis = `En general, tus emociones más frecuentes son: `;
-                }
+                let analysis = selectedPerson ? 
+                    `En tu relación con ${selectedPerson}, las emociones más frecuentes son: ` :
+                    `En general, tus emociones más frecuentes son: `;
 
                 analysis += sortedEmotions.map(entry => `${entry[0]} (${entry[1]} veces)`).join(', ');
 
@@ -1237,49 +1607,111 @@
 
                 analysis += `. \n\nEl ${positiveRatio.toFixed(1)}% de tus emociones son positivas.`;
 
-                analysisText.textContent = analysis;
+                document.getElementById('analysis-text').textContent = analysis;
 
                 // Generar recomendación
                 let recommendationMsg = '';
                 if (positiveRatio >= 70) {
-                    recommendationMsg = '¡Excelente! Tu relación parece muy saludable. Sigue cultivando estos momentos positivos.';
+                    recommendationMsg = '¡Excelente! 🎉 Tu relación parece muy saludable. Sigue cultivando estos momentos positivos.';
                 } else if (positiveRatio >= 40) {
-                    recommendationMsg = 'Tu relación tiene aspectos positivos y áreas de mejora. Considera hablar abiertamente sobre lo que te molesta.';
+                    recommendationMsg = 'Tu relación tiene aspectos positivos y áreas de mejora. 💭 Considera hablar abiertamente sobre lo que te molesta.';
                 } else {
-                    recommendationMsg = 'Parece que hay desafíos en esta relación. Podría ser útil buscar apoyo o tener una conversación honesta sobre tus sentimientos.';
+                    recommendationMsg = 'Parece que hay desafíos en esta relación. 🤔 Podría ser útil buscar apoyo o tener una conversación honesta sobre tus sentimientos.';
                 }
 
-                recommendationText.textContent = recommendationMsg;
-                recommendation.style.display = 'block';
+                document.getElementById('recommendation-text').textContent = recommendationMsg;
+                document.getElementById('recommendation').style.display = 'block';
             }
 
-            analysisResult.style.display = 'block';
-        });
+            document.getElementById('analysis-result').style.display = 'block';
+        }
 
-        // Establecer fecha por defecto en el formulario de emociones
-        document.getElementById('emotion-date').valueAsDate = new Date();
+        // ========== UTILIDADES ==========
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('es-ES', options);
+        }
 
-        // Sistema de temas
-        const themeButtons = document.querySelectorAll('.theme-btn');
+        function updateWelcomeMessage() {
+            const hour = new Date().getHours();
+            let message = '';
 
-        themeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const theme = this.getAttribute('data-theme');
-                document.body.className = '';
-                if (theme !== 'default') {
-                    document.body.classList.add(`theme-${theme}`);
-                }
+            if (hour < 12) message = '¡Buenos días! ☀️';
+            else if (hour < 18) message = '¡Buenas tardes! 🌤️';
+            else message = '¡Buenas noches! 🌙';
 
-                // Guardar preferencia de tema
-                localStorage.setItem('preferred-theme', theme);
+            document.getElementById('welcome-message').textContent = message;
+        }
+
+        function updateStats() {
+            const completedTasks = appData.tasks.filter(task => task.completed).length;
+            const totalTasks = appData.tasks.length;
+            const progressPercentage = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+
+            document.getElementById('task-count').textContent = `${completedTasks}/${totalTasks}`;
+            document.getElementById('emotion-count').textContent = appData.emotions.length;
+            document.getElementById('progress-fill').style.width = `${progressPercentage}%`;
+        }
+
+        function populatePersonSelects() {
+            const personSelect = document.getElementById('person-select');
+            const analysisSelect = document.getElementById('analysis-person');
+
+            // Limpiar opciones excepto la primera
+            while (personSelect.children.length > 1) personSelect.removeChild(personSelect.lastChild);
+            while (analysisSelect.children.length > 1) analysisSelect.removeChild(analysisSelect.lastChild);
+
+            // Agregar personas
+            appData.people.forEach(person => {
+                const option1 = document.createElement('option');
+                option1.value = person.name;
+                option1.textContent = person.name;
+                personSelect.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = person.name;
+                option2.textContent = person.name;
+                analysisSelect.appendChild(option2);
+            });
+        }
+
+        function formatDate(dateString) {
+            const options = { day: 'numeric', month: 'short' };
+            return new Date(dateString).toLocaleDateString('es-ES', options);
+        }
+
+        function saveData() {
+            localStorage.setItem('upmhAppData', JSON.stringify(appData));
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.background = type === 'error' ? 'var(--danger-color)' : 'var(--success-color)';
+            notification.style.display = 'block';
+
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // ========== EVENT LISTENERS ADICIONALES ==========
+        // Emoción tags
+        document.querySelectorAll('.emotion-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('active');
             });
         });
 
-        // Cargar tema guardado
-        const savedTheme = localStorage.getItem('preferred-theme');
-        if (savedTheme && savedTheme !== 'default') {
-            document.body.classList.add(`theme-${savedTheme}`);
-        }
+        // Cerrar modal al hacer clic fuera
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAllModals();
+                }
+            });
+        });
     </script>
 </body>
 </html>
